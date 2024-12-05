@@ -89,7 +89,7 @@ function App() {
               </Button>
 
               <LinkContainer className='px-3' to="/">
-                <Navbar.Brand>Booy</Navbar.Brand>
+                <Navbar.Brand>Boy</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
