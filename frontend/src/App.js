@@ -83,6 +83,7 @@ function App() {
             <Container>
               <Button
                 variant="dark"
+                role="button"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}>
                 <i className="fas fa-bars"></i>
               </Button>

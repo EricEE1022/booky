@@ -6,7 +6,7 @@ export const baseUrl = () =>
     ? process.env.BASE_URL
     : process.env.NODE_ENV !== 'production'
     ? 'http://localhost:4000'
-    : 'https://yourdomain.com';
+    : 'https://booky-jade.vercel.app';
 
 export const generateToken = (user) => {
   return jwt.sign(
