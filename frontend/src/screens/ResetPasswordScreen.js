@@ -68,7 +68,7 @@ export default function ResetPasswordScreen() {
         </Form.Group>
 
         <div className="mb-3">
-          <Button type="submit">Reset Password</Button>
+          <Button role='button' type="submit">Reset Password</Button>
         </div>
       </Form>
     </Container>

@@ -181,6 +181,7 @@ export default function ProductListScreen() {
                   <td>
                     <Button
                       type="button"
+                      role='button'
                       variant="light"
                       onClick={() => navigate(`/admin/product/${product._id}`)}
                     >
@@ -189,6 +190,7 @@ export default function ProductListScreen() {
                     &nbsp;
                     <Button
                       type="button"
+                      role='button'
                       variant="light"
                       onClick={() => deleteHandler(product)}
                     >

@@ -226,6 +226,7 @@ export default function SearchScreen() {
                     rating !== 'all' ||
                     price !== 'all' ? (
                       <Button
+                      role='button'
                         variant="light"
                         onClick={() => navigate('/search')}
                       >
@@ -274,6 +275,7 @@ export default function SearchScreen() {
                     <Button
                       className={Number(page) === x + 1 ? 'text-bold' : ''}
                       variant="light"
+                      role='button'
                     >
                       {x + 1}
                     </Button>

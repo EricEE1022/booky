@@ -52,7 +52,9 @@ export default function ForgetPasswordScreen() {
         </Form.Group>
 
         <div className="mb-3">
-          <Button type="submit">submit</Button>
+          <Button role="button" type="submit">
+            submit
+          </Button>
         </div>
       </Form>
     </Container>

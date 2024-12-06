@@ -177,6 +177,7 @@ export default function PlaceOrderScreen() {
                   <div className="d-grid">
                     <Button
                       type="button"
+                      role='button'
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
                     >

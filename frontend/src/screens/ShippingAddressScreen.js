@@ -111,6 +111,7 @@ export default function ShippingAddressScreen() {
             <Button
               id="chooseOnMap"
               type="button"
+              role='button'
               variant="light"
               onClick={() => navigate('/map')}
             >
@@ -127,7 +128,7 @@ export default function ShippingAddressScreen() {
           </div>
 
           <div className="mb-3">
-            <Button variant="primary" type="submit">
+            <Button role='button' variant="primary" type="submit">
               Continue
             </Button>
           </div>

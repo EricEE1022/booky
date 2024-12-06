@@ -154,6 +154,7 @@ function ProductScreen() {
                       <Button
                         className="thumbnail"
                         type="button"
+                        role='button'
                         variant="light"
                         onClick={() => setSelectedImage(x)}
                       >
@@ -196,7 +197,7 @@ function ProductScreen() {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button onClick={addToCartHandler} variant="primary">
+                      <Button className='text-bold' role='button' onClick={addToCartHandler} variant="primary">
                         Add to Cart
                       </Button>
                     </div>
@@ -257,7 +258,7 @@ function ProductScreen() {
               </FloatingLabel>
 
               <div className="mb-3">
-                <Button disabled={loadingCreateReview} type="submit">
+                <Button role='button' disabled={loadingCreateReview} type="submit">
                   Submit
                 </Button>
                 {loadingCreateReview && <LoadingBox></LoadingBox>}

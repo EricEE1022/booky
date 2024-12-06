@@ -105,15 +105,13 @@ export default function MapScreen() {
           center={center}
           zoom={15}
           onLoad={onLoad}
-          onIdle={onIdle}
-        >
+          onIdle={onIdle}>
           <StandaloneSearchBox
             onLoad={onLoadPlaces}
-            onPlacesChanged={onPlacesChanged}
-          >
+            onPlacesChanged={onPlacesChanged}>
             <div className="map-input-box">
               <input type="text" placeholder="Enter your address"></input>
-              <Button type="button" onClick={onConfirm}>
+              <Button role="button" type="button" onClick={onConfirm}>
                 Confirm
               </Button>
             </div>

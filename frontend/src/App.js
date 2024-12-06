@@ -82,19 +82,20 @@ function App() {
             expand="lg">
             <Container>
               <Button
+                role="button"
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}>
                 <i className="fas fa-bars"></i>
               </Button>
 
-              <LinkContainer className='px-3' to="/">
+              <LinkContainer className="px-3" to="/">
                 <Navbar.Brand>Booky</Navbar.Brand>
               </LinkContainer>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Toggle className='mb-2' aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <SearchBox />
-                <Nav className="me-auto  w-100  justify-content-end">
-                  <Link to="/cart" className="nav-link">
+                <SearchBox  />
+                <Nav className="me-auto w-100 justify-content-end">
+                  <Link to="/cart" className="nav-link text-white">
                     Cart
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
@@ -103,7 +104,9 @@ function App() {
                     )}
                   </Link>
                   {userInfo ? (
-                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                    <NavDropdown
+                    title={<span style={{ color: "white" }}>{userInfo.name}</span>}
+                      id="basic-nav-dropdown">
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
@@ -119,13 +122,16 @@ function App() {
                       </Link>
                     </NavDropdown>
                   ) : (
-                    <Link className="nav-link" to="/signin">
+                    <Link className="nav-link text-white" to="/signin">
                       Sign In
                     </Link>
                   )}
                   {userInfo && userInfo.isAdmin && (
-                    <NavDropdown title="Admin" id="admin-nav-dropdown">
-                      <LinkContainer to="/admin/dashboard">
+                    <NavDropdown
+                      title={<span style={{ color: "white" }}>{"Admin"}</span>}
+                      id="admin-nav-dropdown">
+                      <LinkContainer
+                        to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/products">
@@ -157,7 +163,7 @@ function App() {
             {categories.map((category) => (
               <Nav.Item key={category}>
                 <LinkContainer
-                style={{ color: 'white'}}
+                  style={{ color: 'white' }}
                   to={{ pathname: '/search', search: `category=${category}` }}
                   onClick={() => setSidebarIsOpen(false)}>
                   <Nav.Link>{category}</Nav.Link>
@@ -267,7 +273,11 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className="text-center">All rights reserved</div>
+          <div
+            style={{ backgroundColor: '#4878df' }}
+            className="text-center py-2 text-white">
+            All rights reserved
+          </div>
         </footer>
       </div>
     </BrowserRouter>

@@ -100,7 +100,7 @@ export default function ProfileScreen() {
           />
         </Form.Group>
         <div className="mb-3">
-          <Button type="submit">Update</Button>
+          <Button role='button' type="submit">Update</Button>
         </div>
       </form>
     </div>

@@ -57,8 +57,7 @@ export default function CartScreen() {
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="img-fluid rounded img-thumbnail"
-                      ></img>{' '}
+                        className="img-fluid rounded img-thumbnail"></img>{' '}
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
                     </Col>
                     <Col md={3}>
@@ -67,27 +66,27 @@ export default function CartScreen() {
                           updateCartHandler(item, item.quantity - 1)
                         }
                         variant="light"
-                        disabled={item.quantity === 1}
-                      >
+                        role="button"
+                        disabled={item.quantity === 1}>
                         <i className="fas fa-minus-circle"></i>
                       </Button>{' '}
                       <span>{item.quantity}</span>{' '}
                       <Button
+                        role="button"
                         variant="light"
                         onClick={() =>
                           updateCartHandler(item, item.quantity + 1)
                         }
-                        disabled={item.quantity === item.countInStock}
-                      >
+                        disabled={item.quantity === item.countInStock}>
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
                     <Col md={3}>${item.price}</Col>
                     <Col md={2}>
                       <Button
+                        role="button"
                         onClick={() => removeItemHandler(item)}
-                        variant="light"
-                      >
+                        variant="light">
                         <i className="fas fa-trash"></i>
                       </Button>
                     </Col>
@@ -111,11 +110,11 @@ export default function CartScreen() {
                 <ListGroup.Item>
                   <div className="d-grid">
                     <Button
+                      role="button"
                       type="button"
                       variant="primary"
                       onClick={checkoutHandler}
-                      disabled={cartItems.length === 0}
-                    >
+                      disabled={cartItems.length === 0}>
                       Proceed to Checkout
                     </Button>
                   </div>

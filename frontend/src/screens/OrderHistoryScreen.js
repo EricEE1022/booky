@@ -86,6 +86,7 @@ export default function OrderHistoryScreen() {
                 </td>
                 <td>
                   <Button
+                  role="button"
                     type="button"
                     variant="light"
                     onClick={() => {

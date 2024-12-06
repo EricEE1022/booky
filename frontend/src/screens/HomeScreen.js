@@ -27,7 +27,6 @@ function HomeScreen() {
     loading: true,
     error: '',
   });
-  // const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
@@ -37,8 +36,6 @@ function HomeScreen() {
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
-
-      // setProducts(result.data);
     };
     fetchData();
   }, []);
@@ -47,7 +44,6 @@ function HomeScreen() {
       <Helmet>
         <title>Booky</title>
       </Helmet>
-      {/* <h1>Featured Products</h1> */}
       <div className="products">
         {loading ? (
           <LoadingBox />
