@@ -84,8 +84,9 @@ function App() {
               <Button
                 role="button"
                 variant="dark"
+                aria-label="Toggle sidebar"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}>
-                <i className="fas fa-bars"></i>
+                <i className="fas fa-bars" aria-hidden="true"></i>
               </Button>
 
               <LinkContainer className="px-3" to="/">
