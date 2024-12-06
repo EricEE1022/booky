@@ -1,34 +1,42 @@
 .product-card {
-  width: 18rem; /* Consistent width */
-  height: 32rem; /* Consistent height */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.product-image {
-  height: 20rem; /* Set a fixed height for images */
-  object-fit: fill; /* Ensures the image scales proportionally */
-}
-
-/* Responsive styles */
-@media screen and (max-width: 768px) {
-  .product-card {
-    width: 90%; /* Adjust width for smaller screens */
+    width: 18rem; /* Consistent width */
+    height: auto; /* Allow height to adjust based on content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; /* Ensure content stays inside the card */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   }
-
+  
   .product-image {
-    height: 15rem; /* Adjust image height */
+    width: 100%; /* Full width of the container */
+    height: auto; /* Dynamically adjusts height */
+    object-fit: contain; /* Ensures the full image is visible */
   }
-}
-
-@media screen and (max-width: 480px) {
-  .product-card {
-    width: 100%; /* Full width for extra small screens */
-    padding: 1rem; /* Add some padding for better appearance */
+  
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .product-card {
+      width: 90%; /* Adjust width for smaller screens */
+      margin: 0 auto; /* Center cards */
+    }
+  
+    .product-image {
+        object-fit: contain; /* Maintain consistent aspect ratio */
+    }
   }
-
-  .product-image {
-    height: 20rem; /* Further adjust image height */
+  
+  @media screen and (max-width: 480px) {
+    .product-card {
+      width: 100%; /* Full width for extra small screens */
+      padding: 1rem; /* Add some padding for better appearance */
+    }
+  
+    .product-image {
+        object-fit: contain; /* Keep consistent aspect ratio */
+    }
   }
-}
+  
