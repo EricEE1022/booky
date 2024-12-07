@@ -204,6 +204,7 @@ function App() {
                   }
                 />
                 <Route path="/placeorder" element={<PlaceOrderScreen />} />
+                <Route path="/search" element={<SearchScreen />} />
                 <Route
                   path="/order/:id"
                   element={

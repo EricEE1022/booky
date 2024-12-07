@@ -92,7 +92,7 @@ export default function SearchScreen() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
+          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`,
         );
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {
@@ -142,8 +142,7 @@ export default function SearchScreen() {
               <li>
                 <Link
                   className={'all' === category ? 'text-bold' : ''}
-                  to={getFilterUrl({ category: 'all' })}
-                >
+                  to={getFilterUrl({ category: 'all' })}>
                   Any
                 </Link>
               </li>
@@ -151,8 +150,7 @@ export default function SearchScreen() {
                 <li key={c}>
                   <Link
                     className={c === category ? 'text-bold' : ''}
-                    to={getFilterUrl({ category: c })}
-                  >
+                    to={getFilterUrl({ category: c })}>
                     {c}
                   </Link>
                 </li>
@@ -165,8 +163,7 @@ export default function SearchScreen() {
               <li>
                 <Link
                   className={'all' === price ? 'text-bold' : ''}
-                  to={getFilterUrl({ price: 'all' })}
-                >
+                  to={getFilterUrl({ price: 'all' })}>
                   Any
                 </Link>
               </li>
@@ -174,8 +171,7 @@ export default function SearchScreen() {
                 <li key={p.value}>
                   <Link
                     to={getFilterUrl({ price: p.value })}
-                    className={p.value === price ? 'text-bold' : ''}
-                  >
+                    className={p.value === price ? 'text-bold' : ''}>
                     {p.name}
                   </Link>
                 </li>
@@ -189,8 +185,9 @@ export default function SearchScreen() {
                 <li key={r.name}>
                   <Link
                     to={getFilterUrl({ rating: r.rating })}
-                    className={`${r.rating}` === `${rating}` ? 'text-bold' : ''}
-                  >
+                    className={
+                      `${r.rating}` === `${rating}` ? 'text-bold' : ''
+                    }>
                     <Rating caption={' & up'} rating={r.rating}></Rating>
                   </Link>
                 </li>
@@ -198,8 +195,7 @@ export default function SearchScreen() {
               <li>
                 <Link
                   to={getFilterUrl({ rating: 'all' })}
-                  className={rating === 'all' ? 'text-bold' : ''}
-                >
+                  className={rating === 'all' ? 'text-bold' : ''}>
                   <Rating caption={' & up'} rating={0}></Rating>
                 </Link>
               </li>
@@ -226,10 +222,9 @@ export default function SearchScreen() {
                     rating !== 'all' ||
                     price !== 'all' ? (
                       <Button
-                      role='button'
+                        role="button"
                         variant="light"
-                        onClick={() => navigate('/search')}
-                      >
+                        onClick={() => navigate('/search')}>
                         <i className="fas fa-times-circle"></i>
                       </Button>
                     ) : null}
@@ -241,8 +236,7 @@ export default function SearchScreen() {
                     value={order}
                     onChange={(e) => {
                       navigate(getFilterUrl({ order: e.target.value }));
-                    }}
-                  >
+                    }}>
                     <option value="newest">Newest Arrivals</option>
                     <option value="lowest">Price: Low to High</option>
                     <option value="highest">Price: High to Low</option>
@@ -270,13 +264,11 @@ export default function SearchScreen() {
                     to={{
                       pathname: '/search',
                       seacrh: getFilterUrl({ page: x + 1 }, true),
-                    }}
-                  >
+                    }}>
                     <Button
                       className={Number(page) === x + 1 ? 'text-bold' : ''}
                       variant="light"
-                      role='button'
-                    >
+                      role="button">
                       {x + 1}
                     </Button>
                   </LinkContainer>
