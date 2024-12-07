@@ -20,7 +20,8 @@
     "react-router-dom": "^6.28.0",
     "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.2",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^4.2.4",
+    "webpack-bundle-analyzer": "^4.10.2"
   },
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",

@@ -1,41 +1,43 @@
+import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
 import Navbar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useContext, useEffect, useState } from 'react';
-import { Store } from './Store';
-import CartScreen from './screens/CartScreen';
-import SigninScreen from './screens/SigninScreen';
-import ShippingAddressScreen from './screens/ShippingAddressScreen';
-import SignupScreen from './screens/SignupScreen';
-import PaymentMethodScreen from './screens/PaymentMethodScreen';
-import PlaceOrderScreen from './screens/PlaceOrderScreen';
-import OrderScreen from './screens/OrderScreen';
-import OrderHistoryScreen from './screens/OrderHistoryScreen';
-import ProfileScreen from './screens/ProfileScreen';
 import Button from 'react-bootstrap/Button';
+import { Store } from './Store';
 import { getError } from './utils';
 import axios from 'axios';
 import SearchBox from './components/SearchBox';
-import SearchScreen from './screens/SearchScreen';
 import ProtectedRoute from './components/ProtectedRoute';
-import DashboardScreen from './screens/DashboardScreen';
 import AdminRoute from './components/AdminRoute';
-import ProductListScreen from './screens/ProductListScreen';
-import ProductEditScreen from './screens/ProductEditScreen';
-import OrderListScreen from './screens/OrderListScreen';
-import UserListScreen from './screens/UserListScreen';
-import UserEditScreen from './screens/UserEditScreen';
-import MapScreen from './screens/MapScreen';
-import ForgetPasswordScreen from './screens/ForgetPasswordScreen';
-import ResetPasswordScreen from './screens/ResetPasswordScreen';
+
+// Lazy imports for screens
+const HomeScreen = lazy(() => import('./screens/HomeScreen'));
+const ProductScreen = lazy(() => import('./screens/ProductScreen'));
+const CartScreen = lazy(() => import('./screens/CartScreen'));
+const SigninScreen = lazy(() => import('./screens/SigninScreen'));
+const ShippingAddressScreen = lazy(() => import('./screens/ShippingAddressScreen'));
+const SignupScreen = lazy(() => import('./screens/SignupScreen'));
+const PaymentMethodScreen = lazy(() => import('./screens/PaymentMethodScreen'));
+const PlaceOrderScreen = lazy(() => import('./screens/PlaceOrderScreen'));
+const OrderScreen = lazy(() => import('./screens/OrderScreen'));
+const OrderHistoryScreen = lazy(() => import('./screens/OrderHistoryScreen'));
+const ProfileScreen = lazy(() => import('./screens/ProfileScreen'));
+const SearchScreen = lazy(() => import('./screens/SearchScreen'));
+const DashboardScreen = lazy(() => import('./screens/DashboardScreen'));
+const ProductListScreen = lazy(() => import('./screens/ProductListScreen'));
+const ProductEditScreen = lazy(() => import('./screens/ProductEditScreen'));
+const OrderListScreen = lazy(() => import('./screens/OrderListScreen'));
+const UserListScreen = lazy(() => import('./screens/UserListScreen'));
+const UserEditScreen = lazy(() => import('./screens/UserEditScreen'));
+const MapScreen = lazy(() => import('./screens/MapScreen'));
+const ForgetPasswordScreen = lazy(() => import('./screens/ForgetPasswordScreen'));
+const ResetPasswordScreen = lazy(() => import('./screens/ResetPasswordScreen'));
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -48,6 +50,7 @@ function App() {
     localStorage.removeItem('paymentMethod');
     window.location.href = '/signin';
   };
+
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
@@ -62,6 +65,7 @@ function App() {
     };
     fetchCategories();
   }, []);
+
   return (
     <BrowserRouter>
       <div
@@ -73,28 +77,27 @@ function App() {
             : fullBox
             ? 'site-container d-flex flex-column full-box'
             : 'site-container d-flex flex-column'
-        }>
+        }
+      >
         <ToastContainer position="bottom-center" limit={1} />
         <header>
-          <Navbar
-            style={{ backgroundColor: '#4878df' }}
-            variant="dark"
-            expand="lg">
+          <Navbar style={{ backgroundColor: '#4878df' }} variant="dark" expand="lg">
             <Container>
               <Button
                 role="button"
                 variant="dark"
                 aria-label="Toggle sidebar"
-                onClick={() => setSidebarIsOpen(!sidebarIsOpen)}>
+                onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+              >
                 <i className="fas fa-bars" aria-hidden="true"></i>
               </Button>
 
               <LinkContainer className="px-3" to="/">
                 <Navbar.Brand>Booky</Navbar.Brand>
               </LinkContainer>
-              <Navbar.Toggle className='mb-2' aria-controls="basic-navbar-nav" />
+              <Navbar.Toggle className="mb-2" aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <SearchBox  />
+                <SearchBox />
                 <Nav className="me-auto w-100 justify-content-end">
                   <Link to="/cart" className="nav-link text-white">
                     Cart
@@ -106,8 +109,9 @@ function App() {
                   </Link>
                   {userInfo ? (
                     <NavDropdown
-                    title={<span style={{ color: "white" }}>{userInfo.name}</span>}
-                      id="basic-nav-dropdown">
+                      title={<span style={{ color: 'white' }}>{userInfo.name}</span>}
+                      id="basic-nav-dropdown"
+                    >
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
@@ -115,10 +119,7 @@ function App() {
                         <NavDropdown.Item>Order History</NavDropdown.Item>
                       </LinkContainer>
                       <NavDropdown.Divider />
-                      <Link
-                        className="dropdown-item"
-                        to="#signout"
-                        onClick={signoutHandler}>
+                      <Link className="dropdown-item" to="#signout" onClick={signoutHandler}>
                         Sign Out
                       </Link>
                     </NavDropdown>
@@ -129,10 +130,10 @@ function App() {
                   )}
                   {userInfo && userInfo.isAdmin && (
                     <NavDropdown
-                      title={<span style={{ color: "white" }}>{"Admin"}</span>}
-                      id="admin-nav-dropdown">
-                      <LinkContainer
-                        to="/admin/dashboard">
+                      title={<span style={{ color: 'white' }}>Admin</span>}
+                      id="admin-nav-dropdown"
+                    >
+                      <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/admin/products">
@@ -156,7 +157,8 @@ function App() {
             sidebarIsOpen
               ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
               : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
-          }>
+          }
+        >
           <Nav className="flex-column text-white w-100 p-2">
             <Nav.Item>
               <strong>Categories</strong>
@@ -166,7 +168,8 @@ function App() {
                 <LinkContainer
                   style={{ color: 'white' }}
                   to={{ pathname: '/search', search: `category=${category}` }}
-                  onClick={() => setSidebarIsOpen(false)}>
+                  onClick={() => setSidebarIsOpen(false)}
+                >
                   <Nav.Link>{category}</Nav.Link>
                 </LinkContainer>
               </Nav.Item>
@@ -175,108 +178,105 @@ function App() {
         </div>
         <main>
           <Container className="mt-3">
-            <Routes>
-              <Route path="/product/:slug" element={<ProductScreen />} />
-              <Route path="/cart" element={<CartScreen />} />
-              <Route path="/search" element={<SearchScreen />} />
-              <Route path="/signin" element={<SigninScreen />} />
-              <Route path="/signup" element={<SignupScreen />} />
-              <Route
-                path="/forget-password"
-                element={<ForgetPasswordScreen />}
-              />
-              <Route
-                path="/reset-password/:token"
-                element={<ResetPasswordScreen />}
-              />
-
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <ProfileScreen />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/map"
-                element={
-                  <ProtectedRoute>
-                    <MapScreen />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/placeorder" element={<PlaceOrderScreen />} />
-              <Route
-                path="/order/:id"
-                element={
-                  <ProtectedRoute>
-                    <OrderScreen />
-                  </ProtectedRoute>
-                }></Route>
-              <Route
-                path="/orderhistory"
-                element={
-                  <ProtectedRoute>
-                    <OrderHistoryScreen />
-                  </ProtectedRoute>
-                }></Route>
-              <Route
-                path="/shipping"
-                element={<ShippingAddressScreen />}></Route>
-              <Route path="/payment" element={<PaymentMethodScreen />}></Route>
-              {/* Admin Routes */}
-              <Route
-                path="/admin/dashboard"
-                element={
-                  <AdminRoute>
-                    <DashboardScreen />
-                  </AdminRoute>
-                }></Route>
-              <Route
-                path="/admin/orders"
-                element={
-                  <AdminRoute>
-                    <OrderListScreen />
-                  </AdminRoute>
-                }></Route>
-              <Route
-                path="/admin/users"
-                element={
-                  <AdminRoute>
-                    <UserListScreen />
-                  </AdminRoute>
-                }></Route>
-              <Route
-                path="/admin/products"
-                element={
-                  <AdminRoute>
-                    <ProductListScreen />
-                  </AdminRoute>
-                }></Route>
-              <Route
-                path="/admin/product/:id"
-                element={
-                  <AdminRoute>
-                    <ProductEditScreen />
-                  </AdminRoute>
-                }></Route>
-              <Route
-                path="/admin/user/:id"
-                element={
-                  <AdminRoute>
-                    <UserEditScreen />
-                  </AdminRoute>
-                }></Route>
-
-              <Route path="/" element={<HomeScreen />} />
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<HomeScreen />} />
+                <Route path="/product/:slug" element={<ProductScreen />} />
+                <Route path="/cart" element={<CartScreen />} />
+                <Route path="/signin" element={<SigninScreen />} />
+                <Route path="/signup" element={<SignupScreen />} />
+                <Route path="/forget-password" element={<ForgetPasswordScreen />} />
+                <Route path="/reset-password/:token" element={<ResetPasswordScreen />} />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <ProfileScreen />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/map"
+                  element={
+                    <ProtectedRoute>
+                      <MapScreen />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/placeorder" element={<PlaceOrderScreen />} />
+                <Route
+                  path="/order/:id"
+                  element={
+                    <ProtectedRoute>
+                      <OrderScreen />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/orderhistory"
+                  element={
+                    <ProtectedRoute>
+                      <OrderHistoryScreen />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/shipping" element={<ShippingAddressScreen />} />
+                <Route path="/payment" element={<PaymentMethodScreen />} />
+                {/* Admin Routes */}
+                <Route
+                  path="/admin/dashboard"
+                  element={
+                    <AdminRoute>
+                      <DashboardScreen />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/admin/orders"
+                  element={
+                    <AdminRoute>
+                      <OrderListScreen />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/admin/users"
+                  element={
+                    <AdminRoute>
+                      <UserListScreen />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/admin/products"
+                  element={
+                    <AdminRoute>
+                      <ProductListScreen />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/admin/product/:id"
+                  element={
+                    <AdminRoute>
+                      <ProductEditScreen />
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  path="/admin/user/:id"
+                  element={
+                    <AdminRoute>
+                      <UserEditScreen />
+                    </AdminRoute>
+                  }
+                />
+              </Routes>
+            </Suspense>
           </Container>
         </main>
         <footer>
-          <div
-            style={{ backgroundColor: '#4878df' }}
-            className="text-center py-2 text-white">
+          <div style={{ backgroundColor: '#4878df' }} className="text-center py-2 text-white">
             All rights reserved
           </div>
         </footer>
