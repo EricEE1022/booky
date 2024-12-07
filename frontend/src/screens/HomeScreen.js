@@ -41,7 +41,7 @@ function HomeScreen() {
   return (
     <div>
       <Helmet>
-        <title>Book</title>
+        <title>Booky</title>
       </Helmet>
       <div className="products">
         {loading ? (
