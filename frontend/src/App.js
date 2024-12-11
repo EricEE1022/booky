@@ -278,7 +278,7 @@ function App() {
         </main>
         <footer>
           <div style={{ backgroundColor: '#4878df' }} className="text-center py-2 text-white">
-            All rights reserved
+            All rights 
           </div>
         </footer>
       </div>
