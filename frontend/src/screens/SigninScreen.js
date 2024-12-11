@@ -18,7 +18,7 @@ export default function SigninScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state, dispatch:  ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -52,6 +52,7 @@ export default function SigninScreen() {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
+            name="email"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -60,12 +61,16 @@ export default function SigninScreen() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
+            name="password"
+            id='password'
             required
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
         <div className="mb-3">
-          <Button role='button' type="submit">Sign In</Button>
+          <Button role="button" type="submit">
+            Sign In
+          </Button>
         </div>
         <div className="mb-3">
           New customer?{' '}
