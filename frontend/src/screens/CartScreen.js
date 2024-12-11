@@ -57,6 +57,9 @@ export default function CartScreen() {
                       <img
                         src={item.image}
                         alt={item.name}
+                        height={"auto"}
+                        width={"auto"}
+                        loading='lazy'
                         className="img-fluid rounded img-thumbnail"></img>{' '}
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
                     </Col>
@@ -67,6 +70,7 @@ export default function CartScreen() {
                         }
                         variant="light"
                         role="button"
+                        aria-label='decrement'
                         disabled={item.quantity === 1}>
                         <i className="fas fa-minus-circle"></i>
                       </Button>{' '}
@@ -74,6 +78,7 @@ export default function CartScreen() {
                       <Button
                         role="button"
                         variant="light"
+                        aria-label='increment'
                         onClick={() =>
                           updateCartHandler(item, item.quantity + 1)
                         }
@@ -85,6 +90,7 @@ export default function CartScreen() {
                     <Col md={2}>
                       <Button
                         role="button"
+                        aria-label='delete'
                         onClick={() => removeItemHandler(item)}
                         variant="light">
                         <i className="fas fa-trash"></i>
@@ -101,18 +107,20 @@ export default function CartScreen() {
             <Card.Body>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <h3>
+                  <p>
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
                     items) : $
                     {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
-                  </h3>
+                  </p>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <div className="d-grid">
                     <Button
                       role="button"
-                      type="button"
+                      aria-label='checkout'
                       variant="primary"
+                      className='text-bold'
+                      style={{ fontSize: '20px' }}
                       onClick={checkoutHandler}
                       disabled={cartItems.length === 0}>
                       Proceed to Checkout

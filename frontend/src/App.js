@@ -99,7 +99,7 @@ function App() {
               <Navbar.Collapse id="basic-navbar-nav">
                 <SearchBox />
                 <Nav className="me-auto w-100 justify-content-end">
-                  <Link to="/cart" className="nav-link text-white">
+                  <Link to="/cart" className="nav-link text-white text-bold" style={{ fontSize: '20px'}}>
                     Cart
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
@@ -109,7 +109,7 @@ function App() {
                   </Link>
                   {userInfo ? (
                     <NavDropdown
-                      title={<span style={{ color: 'white' }}>{userInfo.name}</span>}
+                      title={<span style={{ color: 'white', fontSize: '20px', fontWeight: 'bold'}}>{userInfo.name}</span>}
                       id="basic-nav-dropdown"
                     >
                       <LinkContainer to="/profile">
@@ -130,7 +130,7 @@ function App() {
                   )}
                   {userInfo && userInfo.isAdmin && (
                     <NavDropdown
-                      title={<span style={{ color: 'white' }}>Admin</span>}
+                      title={<span style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}>Admin</span>}
                       id="admin-nav-dropdown"
                     >
                       <LinkContainer to="/admin/dashboard">
@@ -277,8 +277,8 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div style={{ backgroundColor: '#4878df' }} className="text-center py-2 text-white">
-            All rights 
+          <div style={{ backgroundColor: '#4878df', fontSize: '20px'  }} className="text-center py-2 text-white text-bold">
+            All rights reserved
           </div>
         </footer>
       </div>

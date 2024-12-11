@@ -1,6 +1,5 @@
 .product-card {
-    width: 18rem; /* Consistent width */
-    height: auto; /* Allow height to adjust based on content */
+     /* Allow height to adjust based on content */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,11 +8,15 @@
     overflow: hidden; /* Ensure content stays inside the card */
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   }
-  
-  .product-image {
-    width: 100%; /* Full width of the container */
-    height: auto; /* Dynamically adjusts height */
-    object-fit: contain; /* Ensures the full image is visible */
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+}
+
+  .card-body {
+    width: 300px;
+    height: 180px;
   }
   
   
